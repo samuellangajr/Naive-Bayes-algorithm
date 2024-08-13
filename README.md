@@ -1,5 +1,5 @@
 # Native-Bayes-algorithm
-University project of using java, weka and Native Bayes algorithm for create a model that analyzes and identifies the character
+University project of using java, weka and Naive Bayes algorithm for create a model that analyzes and identifies the character
 
 # Weka results
 ![image](https://github.com/user-attachments/assets/f32695f8-120f-4d78-bcdb-b8ee6d537482)
