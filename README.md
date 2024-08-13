@@ -1,4 +1,4 @@
-# Native-Bayes-algorithm
+# Naive-Bayes-algorithm
 University project of using java, weka and Naive Bayes algorithm for create a model that analyzes and identifies the character
 
 # Weka results
