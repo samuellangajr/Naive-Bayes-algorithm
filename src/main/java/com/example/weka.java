@@ -12,24 +12,30 @@ public class weka {
 
     public static void main(String[] args) {
         try {
-            DataSource source = new DataSource("src\\main\\resources\\caracteristicas.arff");
+            DataSource source = new DataSource("src\\main\\resources\\vote.arff");
             Instances data = source.getDataSet();
 
             if (data.classIndex() == -1) {
                 data.setClassIndex(data.numAttributes() - 1);
             }
 
-            Classifier classifier = new NaiveBayes();
-            classifier.buildClassifier(data);
+            int trainSize = (int) Math.round(data.numInstances() * 0.8);
+            int testSize = data.numInstances() - trainSize;
 
-            Evaluation eval = new Evaluation(data);
-            eval.crossValidateModel(classifier, data, 10, new Random(1));
+            data.randomize(new Random(1));
+
+            Instances train = new Instances(data, 0, trainSize);
+            Instances test = new Instances(data, trainSize, testSize);
+
+            Classifier classifier = new NaiveBayes();
+            classifier.buildClassifier(train);
+
+            Evaluation eval = new Evaluation(train);
+            eval.evaluateModel(classifier, test);
 
             System.out.println(eval.toSummaryString("\nResultados da Avaliação com Naive Bayes\n", false));
             System.out.println(eval.toClassDetailsString());
             System.out.println(eval.toMatrixString());
-            
-
         } catch (Exception e) {
             e.printStackTrace();
         }
